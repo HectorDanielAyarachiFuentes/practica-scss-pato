@@ -149,17 +149,131 @@ section {
     }
 }
 
-// Estilos del Pie de Página
-.site-footer {
-    background-color: $color-texto;
-    color: $color-blanco;
-    text-align: center;
-    padding: ($espaciado-base * 2) 0;
-    margin-top: $espaciado-base * 2;
+/* --- 5. PIE DE PÁGINA MODERNO (VERSIÓN FINAL CORREGIDA) --- */
 
-    p {
-        margin: 0;
-        font-size: 0.9rem;
-        opacity: 0.8;
+.site-footer {
+    background-color: #2c3e50;
+    color: rgba($color-blanco, 0.7);
+    padding: ($espaciado-base * 4) 0 ($espaciado-base * 2);
+    margin-top: $espaciado-base * 4;
+    font-size: 0.95rem;
+
+    // Contenedor principal para las columnas
+    .footer-content {
+        display: flex;                  // **CORRECCIÓN CLAVE:** Activa el layout de columnas
+        flex-wrap: wrap;                // Permite que las columnas se apilen en pantallas pequeñas
+        justify-content: space-between; // Distribuye el espacio entre las columnas
+        gap: $espaciado-base * 2;       // Espacio entre columnas si se apilan
+        margin-bottom: $espaciado-base * 3;
+    }
+
+    // Estilo para cada columna individual
+    .footer-column {
+        flex: 1;                        // Hace que cada columna ocupe un espacio similar
+        min-width: 250px;               // Ancho mínimo antes de que se apilen
+        text-align: left;               // **CORRECCIÓN CLAVE:** Alinea el texto a la izquierda por defecto
+        
+        h4 {
+            color: $color-blanco;
+            margin-bottom: $espaciado-base * 1.5;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 0.75rem;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0; // Se alinea con el texto a la izquierda
+                width: 40px;
+                height: 2px;
+                background-color: $color-primario;
+            }
+        }
+        
+        // **CORRECCIÓN CLAVE:** Estilos para la lista de navegación
+        ul {
+            list-style: none; // ¡Esto quita los puntos!
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: $espaciado-base * 0.75;
+        }
+
+        a {
+            color: rgba($color-blanco, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+
+            &:hover {
+                color: $color-blanco;
+                padding-left: 8px;
+            }
+        }
+    }
+    
+    // **CORRECCIÓN CLAVE:** Estilos para los iconos que no se estaban aplicando
+    .social-links {
+        display: flex;
+        gap: $espaciado-base * 1.5;
+        align-items: center;
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background-color: rgba($color-blanco, 0.1);
+            color: $color-blanco;
+            border-radius: 50%; // Hace los botones circulares
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            
+            &:hover {
+                background-color: $color-primario;
+                transform: translateY(-4px) scale(1.05);
+                padding-left: 0; // Anula el hover de los otros links
+            }
+        }
+    }
+
+    // Barra inferior con el copyright
+    .footer-bottom {
+        text-align: center;
+        padding-top: $espaciado-base * 2;
+        border-top: 1px solid rgba($color-blanco, 0.1);
+
+        p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: rgba($color-blanco, 0.5);
+        }
+    }
+
+    // Responsive: Solo centrar en pantallas pequeñas
+    @media (max-width: $breakpoint-tablet) {
+        // **CORRECCIÓN CLAVE:** El centrado se aplica SÓLO en móvil
+        .footer-content {
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        .footer-column {
+            text-align: center;
+        }
+
+        .footer-column h4::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .social-links {
+            justify-content: center;
+        }
     }
 }

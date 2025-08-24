@@ -142,17 +142,108 @@ section:not(:last-of-type) {
   border-bottom: 1px solid #e7e7e7;
 }
 
+/* --- 5. PIE DE PÁGINA MODERNO (VERSIÓN FINAL CORREGIDA) --- */
 .site-footer {
-  background-color: #333;
-  color: #ffffff;
-  text-align: center;
-  padding: 2rem 0;
-  margin-top: 2rem;
+  background-color: #2c3e50;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4rem 0 2rem;
+  margin-top: 4rem;
+  font-size: 0.95rem;
 }
-.site-footer p {
+.site-footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.site-footer .footer-column {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+.site-footer .footer-column h4 {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+.site-footer .footer-column h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #3498db;
+}
+.site-footer .footer-column ul {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.8;
+}
+.site-footer .footer-column li {
+  margin-bottom: 0.75rem;
+}
+.site-footer .footer-column a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+.site-footer .footer-column a:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+.site-footer .social-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.site-footer .social-links a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.site-footer .social-links a:hover {
+  background-color: #3498db;
+  transform: translateY(-4px) scale(1.05);
+  padding-left: 0;
+}
+.site-footer .footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.site-footer .footer-bottom p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+@media (max-width: 768px) {
+  .site-footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .site-footer .footer-column {
+    text-align: center;
+  }
+  .site-footer .footer-column h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .site-footer .social-links {
+    justify-content: center;
+  }
 }
 
 .hero {
