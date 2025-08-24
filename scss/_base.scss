@@ -1,0 +1,35 @@
+// Reseteo básico
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    font-weight: $font-weight-normal;
+    line-height: 1.6;
+    color: $text-color;
+    background-color: $bg-color;
+}
+
+h1, h2 {
+    font-weight: $font-weight-bold;
+    margin-bottom: 1rem;
+    color: darken($primary-color, 20%);
+}
+
+a {
+    text-decoration: none;
+    color: darken($primary-color, 25%);
+    transition: color 0.3s ease;
+    
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}

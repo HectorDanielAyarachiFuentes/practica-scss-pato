@@ -1,0 +1,48 @@
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// Estilos del Encabezado
+.site-header {
+    background-color: $white-color;
+    padding: 1rem 0;
+    box-shadow: $box-shadow;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+}
+
+// Estilos del Main
+main {
+    padding: 2rem 0;
+}
+
+section {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+// Estilos del Pie de Página
+.site-footer {
+    background-color: $text-color;
+    color: $white-color;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}

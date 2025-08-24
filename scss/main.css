@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #333;
+  background-color: #F9F9F9;
+}
+
+h1, h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: rgb(46.5037593985, 170.1879699248, 228.4962406015);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(28.1390977444, 159.454887218, 221.3609022556);
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #89CFF0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header {
+  background-color: #FFFFFF;
+  padding: 1rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.site-header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+main {
+  padding: 2rem 0;
+}
+
+section {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.site-footer {
+  background-color: #333;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+}
+
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://random-d.uk/api/21.gif");
+  background-size: cover;
+  background-position: center;
+  color: #FFFFFF;
+  padding: 5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.hero h2 {
+  color: #FFFFFF;
+  font-size: 2.5rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.gallery-grid img {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-grid img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.fact-card {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 10px solid #FDFD96;
+}
+.fact-card p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #89CFF0;
+  color: #FFFFFF;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn:hover {
+  background-color: rgb(91.7518796992, 188.5939849624, 234.2481203008);
+  transform: translateY(-2px);
+}/*# sourceMappingURL=main.css.map */
