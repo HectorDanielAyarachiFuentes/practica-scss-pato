@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rincón del Pato Feliz</title>
+    <!-- Google Fonts para un look más amigable -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Enlazamos el CSS compilado -->
+    <link rel="stylesheet" href="scss/main.css">
+</head>
+<body>
+
+    <!-- ========================
+         ENCABEZADO
+    ========================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1>🦆 El Rincón del Pato Feliz</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Galería</a></li>
+                    <li><a href="#">Curiosidades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================
+         CONTENIDO PRINCIPAL
+    ========================= -->
+    <main>
+        <!-- Sección de Héroe -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>¡Bienvenidos al maravilloso mundo de los patos!</h2>
+                <p>Explora, aprende y sorpréndete con estas aves acuáticas.</p>
+            </div>
+        </section>
+
+        <!-- Sección de Galería -->
+        <section class="gallery container">
+            <h2>Galería de Patitos</h2>
+            <div class="gallery-grid">
+                <!-- Usaremos un servicio de imágenes de patos para hacerlo fácil -->
+                <img src="https://random-d.uk/api/150.jpg" alt="Un pato adorable">
+                <img src="https://random-d.uk/api/110.jpg" alt="Un pato adorable">
+                <img src="https://random-d.uk/api/123.jpg" alt="Un pato adorable">
+                <img src="https://random-d.uk/api/130.jpg" alt="Un pato adorable">
+                <img src="https://random-d.uk/api/145.jpg" alt="Un pato adorable">
+                <img src="https://random-d.uk/api/50.jpg" alt="Un pato adorable">
+            </div>
+        </section>
+
+        <!-- Sección de Datos Curiosos (con JS) -->
+        <section class="fun-facts container">
+            <h2>Dato Curioso del Día</h2>
+            <div class="fact-card">
+                <p id="duck-fact">Haz clic en el botón para descubrir un dato curioso sobre los patos.</p>
+                <button id="fact-btn" class="btn">¡Nuevo Dato!</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================
+         PIE DE PÁGINA
+    ========================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023 El Rincón del Pato Feliz. Creado con amor y cuacs 💛.</p>
+        </div>
+    </footer>
+
+    <!-- Enlazamos nuestro script de JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
