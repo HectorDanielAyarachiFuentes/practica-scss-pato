@@ -7,7 +7,7 @@
     <!-- Google Fonts para un look más amigable -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Enlazamos el CSS compilado -->
     <link rel="stylesheet" href="scss/main.css">
@@ -15,92 +15,254 @@
 <body>
 
     <!-- ========================
-         ENCABEZADO
+         ENCABEZADO MEJORADO
     ========================= -->
-    <header class="site-header">
+    <header class="site-header" id="inicio">
         <div class="container">
-            <h1>🦆 El Rincón del Pato Feliz</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Galería</a></li>
-                    <li><a href="#">Curiosidades</a></li>
+            <a href="#inicio" class="site-header__logo">
+                <span class="logo-icon">🦆</span>
+                <span>El Rincón del Pato Feliz</span>
+            </a>
+            <button class="site-header__toggle" aria-label="Menú de navegación">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="site-header__nav">
+                <ul class="site-header__nav-list">
+                    <li><a href="#inicio" class="site-header__nav-link active">Inicio</a></li>
+                    <li><a href="#galeria" class="site-header__nav-link">Galería</a></li>
+                    <li><a href="#curiosidades" class="site-header__nav-link">Curiosidades</a></li>
+                    <li><a href="#contacto" class="site-header__nav-link">Contacto</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- ========================
-         CONTENIDO PRINCIPAL
+         CONTENIDO PRINCIPAL MEJORADO
     ========================= -->
     <main>
-        <!-- Sección de Héroe -->
-        <section class="hero">
-            <div class="hero-content">
-                <h2>¡Bienvenidos al maravilloso mundo de los patos!</h2>
-                <p>Explora, aprende y sorpréndete con estas aves acuáticas.</p>
+        <!-- Sección de Héroe Mejorada -->
+        <section class="hero section--lg">
+            <div class="container">
+                <div class="hero-content text-center">
+                    <h1 class="mb-4">¡Bienvenidos al maravilloso mundo de los patos!</h1>
+                    <p class="text-secondary mb-5">Explora, aprende y sorpréndete con estas fascinantes aves acuáticas y su comportamiento.</p>
+                    <a href="#galeria" class="btn btn-primary">Explorar Galería</a>
+                </div>
             </div>
         </section>
 
-        <!-- Sección de Galería -->
-        <section class="gallery container">
-            <h2>Galería de Patitos</h2>
-            <div class="gallery-grid">
-                <!-- Usaremos un servicio de imágenes de patos para hacerlo fácil -->
-                <img src="https://random-d.uk/api/150.jpg" alt="Un pato adorable">
-                <img src="https://random-d.uk/api/110.jpg" alt="Un pato adorable">
-                <img src="https://random-d.uk/api/123.jpg" alt="Un pato adorable">
-                <img src="https://random-d.uk/api/130.jpg" alt="Un pato adorable">
-                <img src="https://random-d.uk/api/145.jpg" alt="Un pato adorable">
-                <img src="https://random-d.uk/api/50.jpg" alt="Un pato adorable">
+        <!-- Sección de Introducción -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center mb-6">
+                    <h2>Descubre el fascinante mundo de los patos</h2>
+                    <p class="text-secondary">Los patos son aves acuáticas increíblemente adaptables que habitan en todos los continentes excepto la Antártida.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Adaptación Acuática</h3>
+                        <p>Sus patas palmeadas y plumaje impermeable los hacen excelentes nadadores.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3>Distribución Global</h3>
+                        <p>Habitan en diversos ecosistemas acuáticos alrededor de todo el mundo.</p>
+                    </div>
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Alimentación Variada</h3>
+                        <p>Su dieta incluye plantas acuáticas, pequeños peces, insectos y crustáceos.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Sección de Datos Curiosos (con JS) -->
-        <section class="fun-facts container">
-            <h2>Dato Curioso del Día</h2>
-            <div class="fact-card">
-                <p id="duck-fact">Haz clic en el botón para descubrir un dato curioso sobre los patos.</p>
-                <button id="fact-btn" class="btn">¡Nuevo Dato!</button>
+        <!-- Sección de Galería Mejorada -->
+        <section id="galeria" class="gallery section bg-light">
+            <div class="container">
+                <h2 class="text-center mb-6">Galería de Patitos</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://random-d.uk/api/150.jpg" alt="Pato nadando en el agua" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p>Pato disfrutando de un día soleado</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://random-d.uk/api/110.jpg" alt="Pato con plumaje colorido" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p>Hermoso plumaje iridiscente</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://random-d.uk/api/123.jpg" alt="Pato en el césped" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p>Descansando después de nadar</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://random-d.uk/api/130.jpg" alt="Pato sumergiéndose en el agua" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p>Buscando alimento bajo el agua</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://random-d.uk/api/145.jpg" alt="Pato con sus crías" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p>Pata cuidando de sus patitos</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://random-d.uk/api/50.jpg" alt="Pato en el atardecer" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p>Reflejos dorados al atardecer</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Sección de Datos Curiosos Mejorada -->
+        <section id="curiosidades" class="fun-facts section">
+            <div class="container">
+                <h2 class="text-center mb-6">Datos Curiosos sobre los Patos</h2>
+                <div class="fact-card text-center shadow rounded-lg">
+                    <div class="fact-icon mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <p id="duck-fact" class="text-secondary">Haz clic en el botón para descubrir un dato curioso sobre los patos.</p>
+                    <button id="fact-btn" class="btn btn-primary mt-4">¡Descubrir Dato Curioso!</button>
+                </div>
+                
+                <div class="additional-facts mt-8">
+                    <h3 class="text-center mb-5">Más datos interesantes</h3>
+                    <div class="facts-grid">
+                        <div class="fact-item">
+                            <h4>Visión ultravioleta</h4>
+                            <p>Los patos pueden ver la luz ultravioleta, lo que les ayuda en la búsqueda de alimento.</p>
+                        </div>
+                        <div class="fact-item">
+                            <h4>Sleep unihemisférico</h4>
+                            <p>Pueden dormir con un ojo abierto, manteniendo la mitad del cerebro alerta ante peligros.</p>
+                        </div>
+                        <div class="fact-item">
+                            <h4>Comunicación compleja</h4>
+                            <p>Tienen diferentes tipos de vocalizaciones para alertar, llamar o expresar contento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nueva Sección de Contacto -->
+        <section id="contacto" class="contact section bg-light">
+            <div class="container">
+                <h2 class="text-center mb-6">Contacto</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 class="mb-4">¿Tienes preguntas sobre patos?</h3>
+                        <p class="mb-4">Nos encanta hablar sobre estas maravillosas aves. ¡Escríbenos!</p>
+                        <div class="contact-details">
+                            <div class="contact-item mb-3">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@rincondelpato.com</span>
+                            </div>
+                            <div class="contact-item mb-3">
+                                <i class="fas fa-phone"></i>
+                                <span>+34 912 345 678</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Madrid, España</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form shadow rounded">
+                        <h3 class="mb-4">Envía un mensaje</h3>
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- ========================
-         PIE DE PÁGINA
+         PIE DE PÁGINA MEJORADO
     ========================= -->
-  <!-- Este es el HTML del footer corregido y mejorado -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-column about">
-                <h4>Mundo Pato</h4>
-                <p>Explorando la vida de nuestros amigos emplumados. Un proyecto dedicado a la admiración y aprendizaje sobre los patos.</p>
-            </div>
-            <div class="footer-column links">
-                <h4>Navegación</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#galeria">Galería</a></li>
-                    <li><a href="#datos">Datos Curiosos</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-column social">
-                <h4>Síguenos</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column about">
+                    <h4>El Rincón del Pato</h4>
+                    <p>Un espacio dedicado al aprecio y conocimiento sobre los patos, esas fascinantes aves acuáticas que alegran nuestros espacios naturales.</p>
+                </div>
+                <div class="footer-column links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#curiosidades">Curiosidades</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column links">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="#">Especies de patos</a></li>
+                        <li><a href="#">Hábitats naturales</a></li>
+                        <li><a href="#">Conservación</a></li>
+                        <li><a href="#">Blog avícola</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column social">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter mt-4">
+                        <h5>Suscríbete a nuestra newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Tu email" required>
+                            <button type="submit" aria-label="Suscribirse"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 El Rincón del Pato Feliz. Todos los derechos reservados.</p>
+            </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Mundo Pato. Todos los derechos reservados.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
+
+    <!-- Botón para volver al inicio -->
+    <a href="#inicio" class="back-to-top" aria-label="Volver al inicio">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- Enlazamos nuestro script de JavaScript -->
     <script src="js/main.js"></script>

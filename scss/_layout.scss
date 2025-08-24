@@ -1,279 +1,924 @@
-/* --- 1. CONFIGURACIÓN Y VARIABLES --- */
+/* --- 1. CONFIGURACIÓN Y VARIABLES MEJORADA --- */
 
-// Colores
-$color-texto: #333;
-$color-fondo: #f9f9f9;
-$color-primario: #3498db;
-$color-blanco: #ffffff;
+// Sistema de colores mejorado
+$color-primary: #3498db;
+$color-primary-dark: #2980b9;
+$color-primary-light: #5dade2;
+$color-secondary: #2c3e50;
+$color-secondary-light: #34495e;
 
-// Tipografía
-$fuente-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-$tamano-base: 1rem; // 16px
+$color-text-primary: #333;
+$color-text-secondary: #555;
+$color-text-light: #777;
 
-// Layout
-$ancho-max-container: 1100px;
-$espaciado-base: 1rem;
-$sombra-caja: 0 2px 10px rgba(0, 0, 0, 0.08);
+$color-background: #f9f9f9;
+$color-surface: #ffffff;
+$color-border: #e0e0e0;
+$color-border-light: #e7e7e7;
+$color-light-bg: #f5f7fa;
 
-// Breakpoints
+// Sistema tipográfico mejorado
+$font-family-primary: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-base: 1rem;    // 16px
+$font-size-lg: 1.125rem;  // 18px
+$font-size-xl: 1.25rem;   // 20px
+$font-size-2xl: 1.5rem;   // 24px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem;  // 36px
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Sistema de espaciado escalable
+$spacing-1: 0.25rem;  // 4px
+$spacing-2: 0.5rem;   // 8px
+$spacing-3: 0.75rem;  // 12px
+$spacing-4: 1rem;     // 16px
+$spacing-5: 1.5rem;   // 24px
+$spacing-6: 2rem;     // 32px
+$spacing-7: 2.5rem;   // 40px
+$spacing-8: 3rem;     // 48px
+$spacing-9: 4rem;     // 64px
+
+// Layout mejorado
+$max-container-width: 1200px;
+$border-radius: 8px;
+$border-radius-lg: 12px;
+$box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+$box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+// Breakpoints mejorados
+$breakpoint-mobile: 576px;
 $breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+$breakpoint-xl: 1200px;
 
+// Transiciones
+$transition-base: all 0.3s ease;
+$transition-slow: all 0.5s ease;
+$transition-fast: all 0.15s ease;
 
-/* --- 2. RESET Y ESTILOS BASE --- */
+/* --- 2. MIXINS ÚTILES --- */
+
+// Mixin para breakpoints responsive
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: #{$breakpoint-mobile}) { @content; }
+  }
+  @else if $breakpoint == tablet {
+    @media (max-width: #{$breakpoint-tablet}) { @content; }
+  }
+  @else if $breakpoint == desktop {
+    @media (max-width: #{$breakpoint-desktop}) { @content; }
+  }
+  @else if $breakpoint == xl {
+    @media (max-width: #{$breakpoint-xl}) { @content; }
+  }
+  @else {
+    @media (max-width: $breakpoint) { @content; }
+  }
+}
+
+// Mixin para centrado flex
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Mixin para centrado absoluto
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Mixin para texto truncado
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Mixin para texto multilínea truncado
+@mixin multiline-truncate($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- 3. RESET Y ESTILOS BASE MEJORADOS --- */
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    font-family: $fuente-principal;
-    font-size: $tamano-base;
-    line-height: 1.6;
-    color: $color-texto;
-    background-color: $color-fondo;
+  margin: 0;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-text-primary;
+  background-color: $color-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3 {
-    margin: 0;
-    line-height: 1.2;
+// Mejora en la jerarquía tipográfica
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 $spacing-4;
+  line-height: 1.2;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
 }
 
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-2xl; }
+h4 { font-size: $font-size-xl; }
+h5 { font-size: $font-size-lg; }
+h6 { font-size: $font-size-base; }
 
-/* --- 3. LAYOUT PRINCIPAL --- */
+p {
+  margin: 0 0 $spacing-4;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: $transition-base;
+  
+  &:hover {
+    color: $color-primary-dark;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- 4. LAYOUT PRINCIPAL MEJORADO --- */
 
 .container {
-    max-width: $ancho-max-container;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: $espaciado-base * 1.5;
-    padding-right: $espaciado-base * 1.5;
+  max-width: $max-container-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-5;
+  padding-right: $spacing-5;
+  
+  @include respond-to(tablet) {
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
+  }
 }
 
+// Utilidades de layout
+.section {
+  padding: $spacing-8 0;
+  
+  &--sm {
+    padding: $spacing-6 0;
+  }
+  
+  &--lg {
+    padding: $spacing-9 0;
+  }
+  
+  &--no-padding {
+    padding: 0;
+  }
+}
 
-/* --- 4. COMPONENTES --- */
+.bg-light {
+  background-color: $color-light-bg;
+}
 
-// Estilos del Encabezado
+/* --- 5. COMPONENTES MEJORADOS --- */
+
+// Encabezado mejorado
 .site-header {
-    background-color: $color-blanco;
-    padding: $espaciado-base 0;
-    box-shadow: $sombra-caja;
-    border-bottom: 1px solid #e0e0e0;
+  background-color: $color-surface;
+  padding: $spacing-4 0;
+  box-shadow: $box-shadow;
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: $transition-base;
 
-    .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap; // Permite que los elementos se reordenen en pantallas pequeñas
-    }
+  &.scrolled {
+    padding: $spacing-3 0;
+    box-shadow: $box-shadow-lg;
+  }
 
-    h1 {
-        font-size: 1.75rem;
-        font-weight: 700;
-    }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-4;
+  }
 
-    nav ul {
-        display: flex;
-        align-items: center;
-        gap: $espaciado-base * 2; // Espaciado moderno entre elementos
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    nav a {
-        color: $color-texto;
-        text-decoration: none;
-        font-weight: 500;
-        padding: 0.5rem 0;
-        position: relative;
-        transition: color 0.3s ease;
-
-        &:hover {
-            color: $color-primario;
-        }
-
-        // Efecto de subrayado animado al pasar el ratón
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background-color: $color-primario;
-            transition: width 0.3s ease;
-        }
-
-        &:hover::after {
-            width: 100%;
-        }
-    }
-
-    // Responsive anidado dentro del componente
-    @media (max-width: $breakpoint-tablet) {
-        .container {
-            flex-direction: column;
-            gap: $espaciado-base;
-        }
-
-        nav ul {
-            width: 100%;
-            justify-content: center;
-        }
-    }
-}
-
-// Estilos del Main y Secciones
-main {
-    padding: ($espaciado-base * 2) 0;
-}
-
-section {
-    padding: ($espaciado-base * 3) 0;
-    text-align: center;
-
-    // Estilos para los títulos de sección (ej. "Galería de Patitos")
-    h2 {
-        margin-bottom: $espaciado-base * 2.5; // Añade margen inferior para separar el título del contenido
-        color: $color-primario;
-        font-size: 2rem;
-    }
-
-    // Añade un separador sutil entre secciones para mejor legibilidad
-    &:not(:last-of-type) {
-        border-bottom: 1px solid #e7e7e7;
-    }
-}
-
-/* --- 5. PIE DE PÁGINA MODERNO (VERSIÓN FINAL CORREGIDA) --- */
-
-.site-footer {
-    background-color: #2c3e50;
-    color: rgba($color-blanco, 0.7);
-    padding: ($espaciado-base * 4) 0 ($espaciado-base * 2);
-    margin-top: $espaciado-base * 4;
-    font-size: 0.95rem;
-
-    // Contenedor principal para las columnas
-    .footer-content {
-        display: flex;                  // **CORRECCIÓN CLAVE:** Activa el layout de columnas
-        flex-wrap: wrap;                // Permite que las columnas se apilen en pantallas pequeñas
-        justify-content: space-between; // Distribuye el espacio entre las columnas
-        gap: $espaciado-base * 2;       // Espacio entre columnas si se apilan
-        margin-bottom: $espaciado-base * 3;
-    }
-
-    // Estilo para cada columna individual
-    .footer-column {
-        flex: 1;                        // Hace que cada columna ocupe un espacio similar
-        min-width: 250px;               // Ancho mínimo antes de que se apilen
-        text-align: left;               // **CORRECCIÓN CLAVE:** Alinea el texto a la izquierda por defecto
-        
-        h4 {
-            color: $color-blanco;
-            margin-bottom: $espaciado-base * 1.5;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 0.75rem;
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0; // Se alinea con el texto a la izquierda
-                width: 40px;
-                height: 2px;
-                background-color: $color-primario;
-            }
-        }
-        
-        // **CORRECCIÓN CLAVE:** Estilos para la lista de navegación
-        ul {
-            list-style: none; // ¡Esto quita los puntos!
-            padding: 0;
-            margin: 0;
-        }
-
-        li {
-            margin-bottom: $espaciado-base * 0.75;
-        }
-
-        a {
-            color: rgba($color-blanco, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease, padding-left 0.3s ease;
-
-            &:hover {
-                color: $color-blanco;
-                padding-left: 8px;
-            }
-        }
+  &__logo {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    
+    &:hover {
+      color: $color-primary-dark;
     }
     
-    // **CORRECCIÓN CLAVE:** Estilos para los iconos que no se estaban aplicando
+    .logo-icon {
+      font-size: 1.5em;
+    }
+  }
+
+  &__nav {
+    @include respond-to(tablet) {
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height $transition-slow;
+      
+      &.active {
+        max-height: 300px;
+      }
+    }
+  }
+
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    gap: $spacing-5;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    @include respond-to(tablet) {
+      flex-direction: column;
+      gap: $spacing-3;
+      padding: $spacing-4 0;
+    }
+  }
+
+  &__nav-link {
+    color: $color-text-primary;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    padding: $spacing-2 0;
+    position: relative;
+    transition: $transition-base;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background-color: $color-primary;
+      transition: width $transition-base;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+    
+    &.active {
+      color: $color-primary;
+      
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-2;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    
+    @include respond-to(tablet) {
+      display: flex;
+    }
+    
+    span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: $color-text-primary;
+      border-radius: 3px;
+      transition: $transition-base;
+    }
+    
+    &.active {
+      span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+      
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    .container {
+      flex-direction: row;
+    }
+  }
+}
+
+// Sección Hero
+.hero {
+  background: linear-gradient(135deg, rgba($color-primary-light, 0.1) 0%, rgba($color-primary, 0.2) 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  h1 {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-5;
+    color: $color-primary;
+    
+    @include respond-to(tablet) {
+      font-size: $font-size-3xl;
+    }
+  }
+  
+  p {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-6;
+    color: $color-text-secondary;
+    
+    @include respond-to(tablet) {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+// Botones
+.btn {
+  display: inline-block;
+  padding: $spacing-3 $spacing-6;
+  border-radius: $border-radius;
+  font-weight: $font-weight-semibold;
+  text-align: center;
+  cursor: pointer;
+  transition: $transition-base;
+  border: none;
+  font-size: $font-size-base;
+  
+  &-primary {
+    background-color: $color-primary;
+    color: $color-surface;
+    
+    &:hover {
+      background-color: $color-primary-dark;
+      transform: translateY(-2px);
+      box-shadow: $box-shadow-lg;
+    }
+  }
+  
+  &-secondary {
+    background-color: $color-secondary;
+    color: $color-surface;
+    
+    &:hover {
+      background-color: $color-secondary-light;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Grid de características
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-6;
+  margin-top: $spacing-7;
+}
+
+.feature-card {
+  padding: $spacing-6;
+  background: $color-surface;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  transition: $transition-base;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-lg;
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    color: $color-primary;
+  }
+  
+  h3 {
+    color: $color-primary;
+    margin-bottom: $spacing-3;
+  }
+}
+
+// Galería
+.gallery {
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: $spacing-5;
+    margin-top: $spacing-6;
+  }
+  
+  &-item {
+    position: relative;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+    transition: $transition-base;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $box-shadow-lg;
+      
+      .gallery-overlay {
+        opacity: 1;
+      }
+    }
+    
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: $transition-base;
+    }
+  }
+  
+  &-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba($color-secondary, 0.8);
+    color: $color-surface;
+    padding: $spacing-4;
+    opacity: 0;
+    transition: $transition-base;
+  }
+}
+
+// Tarjeta de datos curiosos
+.fact-card {
+  background: $color-surface;
+  padding: $spacing-7;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  max-width: 700px;
+  margin: 0 auto;
+  
+  .fact-icon {
+    font-size: 3rem;
+    color: $color-primary;
+    margin-bottom: $spacing-5;
+  }
+  
+  #duck-fact {
+    font-size: $font-size-lg;
+    line-height: 1.6;
+    margin-bottom: $spacing-5;
+  }
+}
+
+// Datos adicionales
+.additional-facts {
+  margin-top: $spacing-8;
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-5;
+}
+
+.fact-item {
+  background: $color-surface;
+  padding: $spacing-5;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  text-align: left;
+  
+  h4 {
+    color: $color-primary;
+    margin-bottom: $spacing-3;
+  }
+}
+
+// Sección de contacto
+.contact {
+  &-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-7;
+    
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &-info {
+    h3 {
+      color: $color-primary;
+      margin-bottom: $spacing-4;
+    }
+  }
+  
+  &-details {
+    margin-top: $spacing-5;
+  }
+  
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-4;
+    
+    i {
+      color: $color-primary;
+      font-size: $font-size-lg;
+      width: 24px;
+    }
+  }
+  
+  &-form {
+    background: $color-surface;
+    padding: $spacing-6;
+    
+    h3 {
+      color: $color-primary;
+      margin-bottom: $spacing-5;
+    }
+  }
+}
+
+// Formularios
+.form-group {
+  margin-bottom: $spacing-5;
+  
+  label {
+    display: block;
+    margin-bottom: $spacing-2;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: $spacing-3;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    transition: $transition-base;
+    
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+    }
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+// Newsletter
+.newsletter {
+  margin-top: $spacing-5;
+  
+  h5 {
+    margin-bottom: $spacing-3;
+    color: $color-surface;
+  }
+  
+  &-form {
+    display: flex;
+    gap: $spacing-2;
+    
+    input {
+      flex: 1;
+      padding: $spacing-3;
+      border: none;
+      border-radius: $border-radius;
+      font-family: $font-family-primary;
+    }
+    
+    button {
+      background: $color-primary;
+      color: $color-surface;
+      border: none;
+      border-radius: $border-radius;
+      padding: $spacing-3;
+      cursor: pointer;
+      transition: $transition-base;
+      
+      &:hover {
+        background: $color-primary-dark;
+      }
+    }
+  }
+}
+
+// Botón volver arriba
+.back-to-top {
+  position: fixed;
+  bottom: $spacing-5;
+  right: $spacing-5;
+  width: 50px;
+  height: 50px;
+  background: $color-primary;
+  color: $color-surface;
+  border-radius: 50%;
+  @include flex-center;
+  box-shadow: $box-shadow-lg;
+  transition: $transition-base;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-3px);
+  }
+}
+
+/* --- 6. PIE DE PÁGINA MEJORADO --- */
+
+.site-footer {
+  background-color: $color-secondary;
+  color: rgba($color-surface, 0.7);
+  padding: $spacing-9 0 $spacing-6;
+  margin-top: $spacing-9;
+  font-size: $font-size-sm;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $color-primary, $color-primary-light);
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: $spacing-6;
+    margin-bottom: $spacing-7;
+  }
+
+  .footer-column {
+    flex: 1;
+    min-width: 250px;
+    text-align: left;
+    
+    h4 {
+      color: $color-surface;
+      margin-bottom: $spacing-5;
+      font-size: $font-size-lg;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: $spacing-3;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: $color-primary;
+      }
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: $spacing-3;
+    }
+
+    a {
+      color: rgba($color-surface, 0.7);
+      text-decoration: none;
+      transition: $transition-base;
+      display: inline-block;
+
+      &:hover {
+        color: $color-surface;
+        transform: translateX($spacing-2);
+      }
+    }
+    
+    p {
+      margin-bottom: $spacing-4;
+      line-height: 1.7;
+    }
+  }
+  
+  .social-links {
+    display: flex;
+    gap: $spacing-3;
+    align-items: center;
+    margin-top: $spacing-4;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      background-color: rgba($color-surface, 0.1);
+      color: $color-surface;
+      border-radius: 50%;
+      font-size: $font-size-lg;
+      transition: $transition-base;
+      
+      &:hover {
+        background-color: $color-primary;
+        transform: translateY(-4px) scale(1.05);
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: $spacing-5;
+    border-top: 1px solid rgba($color-surface, 0.1);
+
+    p {
+      margin: 0;
+      font-size: $font-size-xs;
+      color: rgba($color-surface, 0.5);
+    }
+  }
+
+  @include respond-to(tablet) {
+    padding: $spacing-7 0 $spacing-5;
+    margin-top: $spacing-7;
+    
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: $spacing-5;
+    }
+
+    .footer-column {
+      text-align: center;
+      min-width: 100%;
+      
+      h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
     .social-links {
-        display: flex;
-        gap: $espaciado-base * 1.5;
-        align-items: center;
-
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 44px;
-            height: 44px;
-            background-color: rgba($color-blanco, 0.1);
-            color: $color-blanco;
-            border-radius: 50%; // Hace los botones circulares
-            font-size: 1rem;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            
-            &:hover {
-                background-color: $color-primario;
-                transform: translateY(-4px) scale(1.05);
-                padding-left: 0; // Anula el hover de los otros links
-            }
-        }
+      justify-content: center;
     }
+  }
+}
 
-    // Barra inferior con el copyright
-    .footer-bottom {
-        text-align: center;
-        padding-top: $espaciado-base * 2;
-        border-top: 1px solid rgba($color-blanco, 0.1);
+/* --- 7. UTILIDADES --- */
 
-        p {
-            margin: 0;
-            font-size: 0.85rem;
-            color: rgba($color-blanco, 0.5);
-        }
-    }
+// Utilidades de texto
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
 
-    // Responsive: Solo centrar en pantallas pequeñas
-    @media (max-width: $breakpoint-tablet) {
-        // **CORRECCIÓN CLAVE:** El centrado se aplica SÓLO en móvil
-        .footer-content {
-            flex-direction: column; 
-            align-items: center; 
-        }
+.text-primary { color: $color-primary; }
+.text-secondary { color: $color-text-secondary; }
+.text-light { color: $color-text-light; }
+.text-white { color: $color-surface; }
 
-        .footer-column {
-            text-align: center;
-        }
+// Utilidades de espaciado
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: $spacing-1; }
+.mb-1 { margin-bottom: $spacing-1; }
+.mt-2 { margin-top: $spacing-2; }
+.mb-2 { margin-bottom: $spacing-2; }
+.mt-3 { margin-top: $spacing-3; }
+.mb-3 { margin-bottom: $spacing-3; }
+.mt-4 { margin-top: $spacing-4; }
+.mb-4 { margin-bottom: $spacing-4; }
+.mt-5 { margin-top: $spacing-5; }
+.mb-5 { margin-bottom: $spacing-5; }
+.mt-6 { margin-top: $spacing-6; }
+.mb-6 { margin-bottom: $spacing-6; }
+.mt-7 { margin-top: $spacing-7; }
+.mb-7 { margin-bottom: $spacing-7; }
+.mt-8 { margin-top: $spacing-8; }
+.mb-8 { margin-bottom: $spacing-8; }
 
-        .footer-column h4::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
+// Utilidades de display
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-none { display: none; }
 
-        .social-links {
-            justify-content: center;
-        }
-    }
+@include respond-to(tablet) {
+  .d-mobile-none { display: none; }
+  .d-mobile-block { display: block; }
+}
+
+// Utilidades de flexbox
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+
+// Utilidades visuales
+.shadow { box-shadow: $box-shadow; }
+.shadow-lg { box-shadow: $box-shadow-lg; }
+.rounded { border-radius: $border-radius; }
+.rounded-lg { border-radius: $border-radius-lg; }
+
+// Utilidades de accesibilidad
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
