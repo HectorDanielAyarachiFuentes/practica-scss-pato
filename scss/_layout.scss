@@ -1,48 +1,158 @@
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* --- 1. CONFIGURACIÓN Y VARIABLES --- */
+
+// Colores
+$color-texto: #333;
+$color-fondo: #f9f9f9;
+$color-primario: #3498db;
+$color-blanco: #ffffff;
+
+// Tipografía
+$fuente-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$tamano-base: 1rem; // 16px
+
+// Layout
+$ancho-max-container: 1100px;
+$espaciado-base: 1rem;
+$sombra-caja: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+// Breakpoints
+$breakpoint-tablet: 768px;
+
+
+/* --- 2. RESET Y ESTILOS BASE --- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+    font-family: $fuente-principal;
+    font-size: $tamano-base;
+    line-height: 1.6;
+    color: $color-texto;
+    background-color: $color-fondo;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+
+/* --- 3. LAYOUT PRINCIPAL --- */
+
+.container {
+    max-width: $ancho-max-container;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $espaciado-base * 1.5;
+    padding-right: $espaciado-base * 1.5;
+}
+
+
+/* --- 4. COMPONENTES --- */
 
 // Estilos del Encabezado
 .site-header {
-    background-color: $white-color;
-    padding: 1rem 0;
-    box-shadow: $box-shadow;
+    background-color: $color-blanco;
+    padding: $espaciado-base 0;
+    box-shadow: $sombra-caja;
+    border-bottom: 1px solid #e0e0e0;
 
     .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap; // Permite que los elementos se reordenen en pantallas pequeñas
     }
 
     h1 {
-        margin: 0;
-        font-size: 1.5rem;
+        font-size: 1.75rem;
+        font-weight: 700;
     }
 
     nav ul {
-        list-style: none;
         display: flex;
-        gap: 20px;
+        align-items: center;
+        gap: $espaciado-base * 2; // Espaciado moderno entre elementos
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    nav a {
+        color: $color-texto;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        position: relative;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $color-primario;
+        }
+
+        // Efecto de subrayado animado al pasar el ratón
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: $color-primario;
+            transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+
+    // Responsive anidado dentro del componente
+    @media (max-width: $breakpoint-tablet) {
+        .container {
+            flex-direction: column;
+            gap: $espaciado-base;
+        }
+
+        nav ul {
+            width: 100%;
+            justify-content: center;
+        }
     }
 }
 
-// Estilos del Main
+// Estilos del Main y Secciones
 main {
-    padding: 2rem 0;
+    padding: ($espaciado-base * 2) 0;
 }
 
 section {
-    padding: 3rem 0;
+    padding: ($espaciado-base * 3) 0;
     text-align: center;
+
+    // Añade un separador sutil entre secciones para mejor legibilidad
+    &:not(:last-of-type) {
+        border-bottom: 1px solid #e7e7e7;
+    }
 }
 
 // Estilos del Pie de Página
 .site-footer {
-    background-color: $text-color;
-    color: $white-color;
+    background-color: $color-texto;
+    color: $color-blanco;
     text-align: center;
-    padding: 1.5rem 0;
-    margin-top: 2rem;
+    padding: ($espaciado-base * 2) 0;
+    margin-top: $espaciado-base * 2;
+
+    p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
 }
