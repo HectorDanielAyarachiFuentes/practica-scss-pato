@@ -133,6 +133,11 @@ section {
   padding: 3rem 0;
   text-align: center;
 }
+section h2 {
+  margin-bottom: 2.5rem;
+  color: #3498db;
+  font-size: 2rem;
+}
 section:not(:last-of-type) {
   border-bottom: 1px solid #e7e7e7;
 }

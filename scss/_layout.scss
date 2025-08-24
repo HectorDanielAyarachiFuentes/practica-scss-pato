@@ -136,6 +136,13 @@ section {
     padding: ($espaciado-base * 3) 0;
     text-align: center;
 
+    // Estilos para los títulos de sección (ej. "Galería de Patitos")
+    h2 {
+        margin-bottom: $espaciado-base * 2.5; // Añade margen inferior para separar el título del contenido
+        color: $color-primario;
+        font-size: 2rem;
+    }
+
     // Añade un separador sutil entre secciones para mejor legibilidad
     &:not(:last-of-type) {
         border-bottom: 1px solid #e7e7e7;
